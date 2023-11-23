@@ -19,7 +19,17 @@
 )
 
 (define (interleave lst1 lst2)
-
+  (if (null? lst1)
+    lst2
+    (if (null? lst2)
+      lst1
+      (cons (car lst1) (interleave lst2 (cdr lst1)))
+    )
+  )
 )
 
-(define (no-repeats s) 'YOUR-CODE-HERE)
+(define (no-repeats s)
+  (if (null? s) s
+    (cons (car s)
+      (no-repeats (filter (lambda (x) (not (= (car s) x))) (cdr s)))))
+)
